@@ -21,8 +21,8 @@ function agregarAmigo() {
     Amigos.push(amigosIngresados);
 
     // Mostramos el array actualizado en la consola (para depurar)
-    console.log(Amigos);
-    console.log(Amigos.length);
+    //console.log(Amigos);
+    //console.log(Amigos.length);
 
     // Actualizamos la lista en el HTML
     actualizarListaAmigos();
@@ -30,6 +30,8 @@ function agregarAmigo() {
     // Limpiamos el campo de entrada, reasignandole el valor vacio.
     document.getElementById('amigo').value = '';
 }
+
+// 3. Implementa una función para actualizar la lista de amigos
 
 // Función para actualizar la lista de amigos en el DOM
 function actualizarListaAmigos() {
@@ -44,7 +46,29 @@ function actualizarListaAmigos() {
     });
 }
 
-
-// 3. Implementa una función para actualizar la lista de amigos
-
 // 4. Implementa una función para sortear los amigos
+
+function sortearAmigo() {
+    //Nos aseguramos que haya al menos, dos nombres ingresados para poder hacer el sorteo.
+    if (Amigos.length < 2) {
+        alert('Se necesitan al menos dos amigos para realizar el sorteo.');
+        return;
+    }
+
+    // Elegir un nombre al azar
+    const indiceAleatorio = Math.floor(Math.random() * Amigos.length);
+    const amigoSecreto = Amigos[indiceAleatorio];
+
+    mostrarResultado(amigoSecreto);
+    //console.log(amigoSecreto)
+}
+
+// Función para mostrar el resultado en el DOM
+function mostrarResultado(amigoSecreto) {
+    const listaResultado = document.getElementById('resultado');
+    listaResultado.innerHTML = '';
+
+    const li = document.createElement('li');
+    li.textContent = `El amigo secreto sorteado es: ${amigoSecreto}`;
+    listaResultado.appendChild(li);
+}
